@@ -5,19 +5,18 @@ import VehicleTable from "./components/VehicleTable";
 import SearchComponent from "./components/SearchComponent";
 import useVehicles from "./hooks/useVehicles";
 import { Vehicle } from './types/types';
+
 const App: React.FC = () => {
   const perPage = 20;
   const [page, setPage] = useState(1);
   const [type, setType] = useState("tracked");
-
   const [plate, setPlate] = useState("");
   const [fleet, setFleet] = useState("");
 
-
-
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
 
-  const { data } = useVehicles(type, page, perPage, plate, fleet);
+  // Custom Hook para pegar os veículos
+  const { data, refetch } = useVehicles(type, page, perPage, plate, fleet);
 
   const filterVehicles = (vehicles: Vehicle[]) => {
     const searchPlate = plate?.trim().toUpperCase().replace(/[-\s]/g, "");
@@ -31,6 +30,14 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
+    const interval = setInterval(() => {
+      refetch();
+    }, 120000);
+
+    return () => clearInterval(interval);
+  }, [refetch]);
+
+  useEffect(() => {
     if (data?.vehicles) {
       const filteredVehicles = filterVehicles(data.vehicles);
 
@@ -41,8 +48,6 @@ const App: React.FC = () => {
       }
     }
   }, [data, plate, fleet, page]);
-
-
 
   const fetchMoreVehicles = () => {
     if (data && page < data.totalPages) {
@@ -60,6 +65,7 @@ const App: React.FC = () => {
 
   return (
     <div className="bg-black min-h-screen text-white flex flex-col w-full">
+      <h3 style={{ color: "#FFFFFF", marginLeft: "70px" }}>Lucas Mariano</h3>
       <div style={{ height: "100px", width: "90%", margin: "0 auto" }}>
         <SearchComponent onSearch={handleSearch} />
       </div>

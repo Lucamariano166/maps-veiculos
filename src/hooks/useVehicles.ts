@@ -54,6 +54,7 @@ export const useVehicles = (
     return useQuery({
         queryKey: ["vehicles", type, page, perPage, plate, fleet],
         queryFn: () => fetchVehicles(type, page, perPage, plate, fleet),
+        
     });
 };
 

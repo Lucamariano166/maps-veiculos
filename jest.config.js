@@ -1,10 +1,9 @@
 module.exports = {
     transform: {
-        '^.+\\.[t|j]sx?$': 'babel-jest',
-        '^.+\\.(js|jsx|mjs)$': 'babel-jest',  // Para transformar arquivos .js, .jsx e .mjs
+        '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest', // Transforma arquivos JS/TS com Babel
     },
     transformIgnorePatterns: [
-        '/node_modules/(?!axios)/',  // Certifique-se de que `axios` será transformado pelo Babel
+        '/node_modules/(?!axios|@tanstack|react-query)/', // Permite transformar 'axios' e outros módulos, como 'react-query'
     ],
-    setupFiles: ['./jest.setup.js'],  // Configuração para simular o Google Maps
+    extensionsToTreatAsEsm: ['.ts', '.tsx'], // Se estiver usando TypeScript, adicione esta linha
 };

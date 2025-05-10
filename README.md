@@ -1,46 +1,118 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Mapa de Veículos
 
-## Available Scripts
+Projeto React para visualização e rastreamento de veículos em tempo real.
 
-In the project directory, you can run:
+## Requisitos
+
+- **Node.js**: v18.x
+- **Gerenciador de pacotes**: npm (v9+) ou yarn
+
+## Scripts Disponíveis
+
+No diretório do projeto, você pode executar:
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Inicia a aplicação em modo de desenvolvimento.Acesse [http://localhost:3000](http://localhost:3000) no navegador.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Executa os testes com Jest em modo interativo.
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Cria uma versão de produção na pasta `build/`.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `npm run cypress:open`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Abre a interface do Cypress para execução dos testes end-to-end.
 
-### `npm run eject`
+### `npm run cypress:run`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Executa os testes E2E do Cypress em modo headless.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Estrutura de Diretórios
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+mapa-veiculos/
+├── cypress/
+│   ├── downloads/
+│   ├── e2e/
+│   ├── fixtures/
+│   ├── integration/
+│   │   └── app.spec.ts
+│   └── support/
+├── public/
+│   ├── icons/
+│   ├── favicon.ico
+│   ├── index.html
+│   └── ...
+├── src/
+│   ├── components/
+│   │   ├── Map.tsx
+│   │   ├── SearchComponent.tsx
+│   │   └── VehicleTable.tsx
+│   ├── hooks/
+│   │   └── useVehicles.ts
+│   ├── types/
+│   │   └── types.ts
+│   ├── App.tsx
+│   ├── App.test.tsx
+│   ├── index.tsx
+│   ├── index.css
+│   └── ...
+├── .gitignore
+├── babel.config.js
+├── cypress.config.ts
+├── jest.config.js
+├── jest.setup.js
+├── package.json
+├── tsconfig.json
+└── README.md
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Testes
 
-## Learn More
+### Unitários (Jest)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Localizados principalmente em `src/`
+- Arquivos: `App.test.tsx`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### End-to-End (Cypress)
+
+- Arquivos em `cypress/integration/`
+- Configuração: `cypress.config.ts`
+- Comando: `npm run cypress:open`
+
+## Tecnologias Utilizadas
+
+- React + TypeScript
+- Jest & React Testing Library
+- Cypress
+- Tailwind CSS (opcional)
+- Axios (ou fetch API)
+- InfiniteScroll, Google Maps API
+
+## Observações
+
+- A função `refetch()` é executada a cada 2 minutos via `setInterval`.
+- O filtro de veículos utiliza placa e/ou número da frota.
+- O mapa é atualizado com base nos dados recebidos da API.
+
+## Scripts Customizados (package.json)
+
+Adicione os seguintes scripts para facilitar o uso do Cypress:
+
+```json
+"scripts": {
+  "start": "react-scripts start",
+  "test": "react-scripts test",
+  "build": "react-scripts build",
+  "eject": "react-scripts eject",
+  "cypress:open": "cypress open",
+  "cypress:run": "cypress run"
+}
+```
+
+
