@@ -64,7 +64,6 @@ const SearchComponent: React.FC<SearchComponentProps> = ({ onSearch }) => {
                     alignItems: "center",
                     marginLeft: "auto",
                     justifyContent: "flex-end",
-                    marginTop: "-30px"
                 }}>
                     <input
                         type="text"
@@ -80,6 +79,19 @@ const SearchComponent: React.FC<SearchComponentProps> = ({ onSearch }) => {
                             width: "220px",
                         }}
                     />
+                    <button
+                        style={{
+                            padding: "8px 16px",
+                            backgroundColor: "#0095E4",
+                            color: "#FFFFFF",
+                            border: "none",
+                            borderRadius: "4px",
+                            cursor: "pointer",
+                            marginLeft: "10px",
+                        }}
+                    >
+                        Novo
+                    </button>
                 </div>
             </div>
             <div style={{ height: "2px", backgroundColor: "#002D44", width: "100%", marginTop: "50px" }} />
