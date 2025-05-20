@@ -18,7 +18,7 @@ const Map: React.FC<MapProps> = ({ style, locationVehicles }) => {
     const [selectedVehicle, setSelectedVehicle] = useState<any | null>(null);
 
     return (
-        <LoadScript googleMapsApiKey="AIzaSyDL2HgAFRCQspUr-X_ZSAqRmaZox7Gif-I">
+        <LoadScript googleMapsApiKey="">
             <GoogleMap
                 mapContainerStyle={style || { width: "100%", height: "400px" }}
                 center={center}
